@@ -18,12 +18,8 @@ public class MessageModel {
     @Column(length = 250)
     private String text;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_client", nullable = false)
-    private ClientModel client;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_car", nullable = false)
-    private CarModel car;
+
+
 
 }

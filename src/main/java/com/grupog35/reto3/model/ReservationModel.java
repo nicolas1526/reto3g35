@@ -21,12 +21,8 @@ public class ReservationModel {
     @Column(name = "devolution_date")
     private Date devolutionDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_client", nullable = false)
-    private ClientModel client;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_car", nullable = false)
-    private CarModel car;
+
+
 
 }
