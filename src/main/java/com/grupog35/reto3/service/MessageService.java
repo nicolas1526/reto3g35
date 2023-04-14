@@ -19,7 +19,7 @@ public class MessageService {
     }
 
     public void crear(MessageModel message){
-        if(!messageRepository.existsById(message.getId())){
+        if(!messageRepository.existsById(message.getIdMessage())){
             messageRepository.save(message);
         }
     }

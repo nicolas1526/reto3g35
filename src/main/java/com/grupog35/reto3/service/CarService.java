@@ -19,7 +19,7 @@ public class CarService {
 
     public void crear(CarModel car){
         System.out.println(car.toString());
-        if(!carRepository.existsById(car.getId())){
+        if(!carRepository.existsById(car.getIdCar())){
             carRepository.save(car);
         }
     }

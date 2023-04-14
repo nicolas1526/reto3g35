@@ -18,7 +18,7 @@ public class ClientService {
     }
 
     public void crear(ClientModel model){
-        if(!clientRepository.existsById(model.getId())){
+        if(!clientRepository.existsById(model.getIdClient())){
             clientRepository.save(model);
         }
     }

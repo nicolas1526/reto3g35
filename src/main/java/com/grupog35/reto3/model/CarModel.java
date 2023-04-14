@@ -1,10 +1,12 @@
 package com.grupog35.reto3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
@@ -12,10 +14,12 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class CarModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id")
+    private int idCar;
     @Column(length = 45)
     private String name;
     @Column(length = 45)
@@ -24,15 +28,15 @@ public class CarModel {
     @Column(length = 250)
     private String description;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name = "id_gama", nullable = false)
+    @JsonIgnoreProperties({"cars"})
     private GamaModel gama;
 
-    @OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_car", nullable = false)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "car")
+    @JsonIgnoreProperties({"client"})
     private List<MessageModel> messages;
 
-    @OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_car", nullable = false)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "car")
     private List<ReservationModel> reservations;
 }

@@ -14,11 +14,10 @@ import javax.persistence.*;
 public class ScoreModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id")
+    private int idScore;
     private int score;
 
-    @OneToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_reservation", unique = true)
-    private ReservationModel reservation;
+
 
 }

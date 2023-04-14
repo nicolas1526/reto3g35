@@ -15,7 +15,8 @@ import java.util.List;
 public class ClientModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id")
+    private int idClient;
     @Column(length = 250)
     private String name;
     @Column(length = 45)
@@ -25,11 +26,9 @@ public class ClientModel {
     @Column(length = 3)
     private byte age;
 
-    @OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_client", nullable = false)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "client")
     private List<MessageModel> messages;
 
-    @OneToMany(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "id_client", nullable = false)
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "client")
     private List<ReservationModel> reservations;
 }

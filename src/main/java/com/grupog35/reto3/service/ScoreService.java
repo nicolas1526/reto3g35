@@ -20,7 +20,7 @@ public class ScoreService {
     }
 
     public void crear(ScoreModel score){
-        if(!scoreRepository.existsById(score.getId())){
+        if(!scoreRepository.existsById(score.getIdScore())){
             scoreRepository.save(score);
         }
     }
