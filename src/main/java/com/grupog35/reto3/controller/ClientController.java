@@ -3,6 +3,7 @@ package com.grupog35.reto3.controller;
 import com.grupog35.reto3.model.ClientModel;
 import com.grupog35.reto3.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class ClientController {
 
     //Todo: Agregar el body al post porque falta el dbo
     @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
     public void crear(@RequestBody ClientModel client){
         clientService.crear(client);
     }

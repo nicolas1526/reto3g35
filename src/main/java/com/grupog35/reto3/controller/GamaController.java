@@ -3,6 +3,7 @@ package com.grupog35.reto3.controller;
 import com.grupog35.reto3.model.GamaModel;
 import com.grupog35.reto3.service.GamaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,12 +16,13 @@ public class GamaController {
     GamaService gamaService;
 
     @GetMapping("/all")
-    public List<GamaModel> obtenerGamas(){
+    public List<GamaModel> obtener(){
         return gamaService.obtener();
     }
 
     @PostMapping("/save")
-    public void crearGamas(@RequestBody GamaModel gama){
+    @ResponseStatus(HttpStatus.CREATED)
+    public void crear(@RequestBody GamaModel gama){
         gamaService.crear(gama);
     }
 
