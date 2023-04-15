@@ -17,18 +17,16 @@ public class ClientModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int idClient;
-    @Column(length = 250)
-    private String name;
     @Column(length = 45)
     private String email;
     @Column(length = 45)
     private String password;
+    @Column(length = 250)
+    private String name;
     @Column(length = 3)
     private byte age;
-
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "client")
     private List<MessageModel> messages;
-
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "client")
     private List<ReservationModel> reservations;
 }

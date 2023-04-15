@@ -24,6 +24,7 @@ public class CarModel {
     private String name;
     @Column(length = 45)
     private String brand;
+    @Column(name = "yyear")
     private int year;
     @Column(length = 250)
     private String description;
@@ -34,7 +35,7 @@ public class CarModel {
     private GamaModel gama;
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "car")
-    @JsonIgnoreProperties({"client"})
+    @JsonIgnoreProperties({"client","car"})
     private List<MessageModel> messages;
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "car")

@@ -18,6 +18,4 @@ public class ScoreModel {
     private int idScore;
     private int score;
 
-
-
 }
