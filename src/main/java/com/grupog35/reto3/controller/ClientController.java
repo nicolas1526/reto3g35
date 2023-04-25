@@ -1,6 +1,5 @@
 package com.grupog35.reto3.controller;
 
-import com.grupog35.reto3.dbo.CarDbo;
 import com.grupog35.reto3.dbo.ClientDbo;
 import com.grupog35.reto3.model.ClientModel;
 import com.grupog35.reto3.service.ClientService;
@@ -9,9 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/Client")
+@CrossOrigin(value = "*")
 public class ClientController {
 
     @Autowired
@@ -20,6 +21,11 @@ public class ClientController {
     @GetMapping("/all")
     public List<ClientModel> obtener(){
         return clientService.obtener();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<ClientModel> obtenerPorId(@PathVariable int id){
+        return clientService.obtenerPorId(id);
     }
 
     @PostMapping("/save")

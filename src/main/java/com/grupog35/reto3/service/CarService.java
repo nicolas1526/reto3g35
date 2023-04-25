@@ -39,4 +39,8 @@ public class CarService {
             carRepository.save(car);
         }
     }
+
+    public Optional<CarModel> obtenerPorId(int id) {
+        return carRepository.findById(id);
+    }
 }

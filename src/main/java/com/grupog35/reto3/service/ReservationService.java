@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReservationService {
@@ -41,4 +42,7 @@ public class ReservationService {
         }
     }
 
+    public Optional<ReservationModel> obtenerPorId(int id) {
+        return reservationRepository.findById(id);
+    }
 }

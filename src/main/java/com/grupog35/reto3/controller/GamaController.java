@@ -1,6 +1,5 @@
 package com.grupog35.reto3.controller;
 
-import com.grupog35.reto3.dbo.CarDbo;
 import com.grupog35.reto3.dbo.GamaDbo;
 import com.grupog35.reto3.model.GamaModel;
 import com.grupog35.reto3.service.GamaService;
@@ -9,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/Gama")
@@ -20,6 +20,11 @@ public class GamaController {
     @GetMapping("/all")
     public List<GamaModel> obtener(){
         return gamaService.obtener();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<GamaModel> obtenerPorId(@PathVariable int id){
+        return gamaService.obtenerPorId(id);
     }
 
     @PostMapping("/save")

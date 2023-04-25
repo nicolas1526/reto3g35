@@ -1,6 +1,5 @@
 package com.grupog35.reto3.controller;
 
-import com.grupog35.reto3.dbo.ClientDbo;
 import com.grupog35.reto3.dbo.MessageDbo;
 import com.grupog35.reto3.model.MessageModel;
 import com.grupog35.reto3.service.MessageService;
@@ -9,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/Message")
@@ -20,6 +20,11 @@ public class MessageController {
     @GetMapping("/all")
     public List<MessageModel> obtener(){
         return messageService.obtener();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<MessageModel> obtenerPorId(@PathVariable int id){
+        return messageService.obtenerPorId(id);
     }
 
     @PostMapping("/save")
