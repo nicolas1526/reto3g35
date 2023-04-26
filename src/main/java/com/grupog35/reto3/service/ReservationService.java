@@ -1,6 +1,7 @@
 package com.grupog35.reto3.service;
 
 import com.grupog35.reto3.dbo.MessageDbo;
+import com.grupog35.reto3.dbo.ReportDbo;
 import com.grupog35.reto3.dbo.ReservationDbo;
 import com.grupog35.reto3.model.MessageModel;
 import com.grupog35.reto3.model.ReservationModel;
@@ -9,6 +10,9 @@ import com.grupog35.reto3.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,5 +48,23 @@ public class ReservationService {
 
     public Optional<ReservationModel> obtenerPorId(int id) {
         return reservationRepository.findById(id);
+    }
+
+    public List<ReservationModel> reportDate(String fechainicio, String fechafin) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+        Date fechainicioDate = format.parse(fechainicio);
+        Date fechafinDate = format.parse(fechafin);
+        if(fechafinDate.after(fechainicioDate)){
+            return reservationRepository.findByStartDateBetween(fechainicio,fechafin);
+        }
+        return null;
+
+    }
+
+    public ReportDbo reportStatus() {
+        Integer cantidadCompletados =  reservationRepository.countByStatus("completed");
+        Integer cantidadCancelados =  reservationRepository.countByStatus("cancelled");
+        ReportDbo rta = new ReportDbo(cantidadCompletados,cantidadCancelados);
+        return rta;
     }
 }
