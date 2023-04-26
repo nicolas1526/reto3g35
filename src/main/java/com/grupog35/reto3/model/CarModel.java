@@ -30,7 +30,7 @@ public class CarModel {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "id_gama", nullable = false)
+    @JoinColumn(name = "id_gama")
     @JsonIgnoreProperties({"cars"})
     private GamaModel gama;
 
