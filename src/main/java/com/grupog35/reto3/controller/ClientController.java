@@ -35,11 +35,13 @@ public class ClientController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(@PathVariable int id){
         clientService.eliminar(id);
     }
 
     @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
     public void actualizar(@RequestBody ClientDbo clientDbo){
         clientService.actualizar(clientDbo);
     }

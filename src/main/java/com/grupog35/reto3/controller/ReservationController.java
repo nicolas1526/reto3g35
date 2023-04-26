@@ -34,11 +34,13 @@ public class ReservationController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(@PathVariable int id){
         reservationService.eliminar(id);
     }
 
     @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
     public void actualizar(@RequestBody ReservationDbo reservationDbo){
         reservationService.actualizar(reservationDbo);
     }
