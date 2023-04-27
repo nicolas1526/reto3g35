@@ -1,8 +1,11 @@
 package com.grupog35.reto3.controller;
 
+import com.grupog35.reto3.dbo.ReportClientDbo;
 import com.grupog35.reto3.dbo.ReportDbo;
 import com.grupog35.reto3.dbo.ReservationDbo;
+import com.grupog35.reto3.model.ClientModel;
 import com.grupog35.reto3.model.ReservationModel;
+import com.grupog35.reto3.service.ClientService;
 import com.grupog35.reto3.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +22,9 @@ public class ReservationController {
 
     @Autowired
     ReservationService reservationService;
+
+    @Autowired
+    ClientService clientService;
 
     @GetMapping("/all")
     public List<ReservationModel> obtener(){
@@ -57,4 +63,12 @@ public class ReservationController {
     public ReportDbo reportStatus() {
         return reservationService.reportStatus();
     }
+
+    @GetMapping("/report-clients")
+    public List<ReportClientDbo> reportClients() {
+        return clientService.reportClients();
+    }
+
+
+
 }

@@ -13,9 +13,11 @@ import java.util.List;
 public interface ReservationRepository extends JpaRepository<ReservationModel,Integer> {
 
 
-    @Query(value = "SELECT * FROM reto5.reservation where start_date BETWEEN ? AND ?",nativeQuery = true)
-    List<ReservationModel> findByStartDateBetween(String fechaInicio, String fechaFinal);
+    //@Query(value = "SELECT * FROM reto5.reservation where start_date BETWEEN ? AND ?",nativeQuery = true)
+    List<ReservationModel> findByStartDateBetween(Date fechaInicio, Date fechaFinal);
 
     Integer countByStatus(String status);
+
+
 
 }

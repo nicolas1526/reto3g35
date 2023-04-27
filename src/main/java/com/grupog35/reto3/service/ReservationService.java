@@ -3,8 +3,10 @@ package com.grupog35.reto3.service;
 import com.grupog35.reto3.dbo.MessageDbo;
 import com.grupog35.reto3.dbo.ReportDbo;
 import com.grupog35.reto3.dbo.ReservationDbo;
+import com.grupog35.reto3.model.ClientModel;
 import com.grupog35.reto3.model.MessageModel;
 import com.grupog35.reto3.model.ReservationModel;
+import com.grupog35.reto3.repository.ClientRepository;
 import com.grupog35.reto3.repository.MessageRepository;
 import com.grupog35.reto3.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class ReservationService {
 
     @Autowired
     ReservationRepository reservationRepository;
+
+    @Autowired
+    ClientRepository clientRepository;
 
     public List<ReservationModel> obtener(){
         return reservationRepository.findAll();
@@ -51,11 +56,12 @@ public class ReservationService {
     }
 
     public List<ReservationModel> reportDate(String fechainicio, String fechafin) throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-M-dd");
         Date fechainicioDate = format.parse(fechainicio);
         Date fechafinDate = format.parse(fechafin);
         if(fechafinDate.after(fechainicioDate)){
-            return reservationRepository.findByStartDateBetween(fechainicio,fechafin);
+            System.out.println(fechainicioDate + "-----" + fechafinDate);
+            return reservationRepository.findByStartDateBetween(fechainicioDate,fechafinDate);
         }
         return null;
 
@@ -67,4 +73,6 @@ public class ReservationService {
         ReportDbo rta = new ReportDbo(cantidadCompletados,cantidadCancelados);
         return rta;
     }
+
+
 }
